@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">Budget Tracker</h1>
+            <nav>
+                <a href="#" class="active" data-view="dashboard">Dashboard</a>
+                <a href="#" data-view="expenses">Expenses</a>
+                <a href="#" data-view="graph">Graph</a>
+            </nav>
+            <div class="user-actions">
+                <button class="icon-button"><span class="icon">🔔</span></button>
+                <button id="settings-button" class="icon-button"><span class="icon">⚙️</span></button>
+                <img src="https://via.placeholder.com/32" alt="User avatar" class="avatar">
+            </div>
+        </header>
+
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <h2>Settings</h2>
+                <div class="theme-toggle">
+                    <label for="theme-switch">Dark Mode</label>
+                    <input type="checkbox" id="theme-switch">
+                </div>
+                <button id="close-settings" class="btn-close">Close</button>
+            </div>
+        </div>
+
+        <main id="dashboard-view">
+            <h2>Hello There!</h2>
+
+            <section class="set-balance">
+                <h3>Set Balance</h3>
+                <form id="balance-form">
+                    <input type="number" id="balance-amount" placeholder="Enter balance" required>
+                    <button type="submit" class="btn-set-balance">Set Balance</button>
+                </form>
+            </section>
+
+            <section class="expense-period">
+                <button id="btn-weekly" class="btn-period active">Weekly</button>
+                <button id="btn-monthly" class="btn-period">Monthly</button>
+            </section>
+
+            <section class="add-expense">
+                <h3>Add a new expense</h3>
+                <form id="expense-form">
+                    <input type="text" id="expense-name" placeholder="Expense" required>
+                    <input type="number" id="expense-amount" placeholder="0.00" step="0.01" required>
+                    <input type="datetime-local" id="expense-date" required>
+                    <select id="currency-selector">
+                        <option value="INR">INR</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="JPY">JPY</option>
+                    </select>
+                    <button type="submit" class="btn-add">Add</button>
+                </form>
+            </section>
+
+            <section class="expense-summary">
+                <div class="summary-header">
+                    <h3>Recent Expenses</h3>
+                    <button class="btn-export">Export</button>
+                </div>
+                <ul id="expense-list"></ul>
+                <div class="budget-progress">
+                    <p id="budget-status"></p>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p id="budget-remaining"></p>
+                </div>
+            </section>
+
+            <button id="clear-expenses" class="btn-clear">Clear All Expenses</button>
+        </main>
+
+        <main id="expenses-view" style="display: none;">
+            <h2>Expenses Overview</h2>
+            <section id="weekly-expenses">
+                <h3>Weekly Expenses</h3>
+                <div id="weekly-expense-list"></div>
+            </section>
+            <section id="monthly-expenses">
+                <h3>Monthly Expenses</h3>
+                <div id="monthly-expense-list"></div>
+            </section>
+            <section id="expense-logs">
+                <h3>Expense Logs</h3>
+                <div id="log-list"></div>
+            </section>
+        </main>
+
+        <main id="graph-view" style="display: none;">
+            <h2>Expense Graph</h2>
+            <div class="chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">About us</a>
+                <a href="https://github.com/YPS7" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://say-my-name.vercel.app/" target="_blank" title="Portfolio"><i class="fas fa-user"></i></a>
+            </div>
+            <p class="copyright">@2024 Budget Tracker by Yash Pratap Singh</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
